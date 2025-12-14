@@ -21,7 +21,11 @@ for arg in "$@"; do
     fi	
 	basename="${arg%.asm}"
     echo "Kompiluję: $arg -> ${basename}.o"
-	nasm -f elf64 -I "$NASM_INCLUDE_MACROS" "$arg" -o "${basename}.o"
+	nasm -f elf64 -I "$NASM_INCLUDE" "$arg" -o "${basename}.o"
+	if [[ $? -ne 0 && "$arg" == "$1" ]]; then
+		echo "Błąd kompilacji głównego pliku: $1!" >&2
+		exit 1 
+	fi
 	if [ $? -ne 0 ]; then
     	echo "Błąd: kompilacja $arg nie powiodła się." >&2
     	continue
@@ -32,7 +36,7 @@ done
 # Linkowanie
 # basename pierwszego pliku dla outputu
 output="${1%.asm}"
-ld ${files[@]} -o "$output"
+ld "${files[@]}" $NASM_INCLUDE/utils/*.o -o "$output"
 if [ $? -ne 0 ]; then
     echo "Błąd: linkowanie nie powiodło się."
     exit 1

@@ -1,6 +1,6 @@
 
-%ifndef SYSCALL_IN
-%define SYSCALL_IN
+%ifndef OTHER_MACROS_INC
+%define OTHER_MACROS_INC
 
 ;--------------------------------------------
 ; Makro HEX int, buf
@@ -17,7 +17,7 @@
 %macro OCT 2
     mov rdi, %1
 	mov rsi, %2
-	call hex
+	call oct
 %endmacro
 
 ;--------------------------------------------
