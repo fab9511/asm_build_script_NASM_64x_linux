@@ -3,6 +3,7 @@ extern hex
 extern oct 
 extern bin
 extern strLen
+extern str_to_int
 
 ; ----- makra -----
 %include "macros/syscall.inc"

@@ -37,6 +37,13 @@
     call strLen
 %endmacro
 
+;--------------------------------------------
+; Makro ATOI
+;--------------------------------------------
+%macro ATOI 1
+    mov rdi, %1
+    call str_to_int
+%endmacro
 
 
 %endif
