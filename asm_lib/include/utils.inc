@@ -2,6 +2,7 @@
 extern hex
 extern oct 
 extern bin
+extern strLen
 
 ; ----- makra -----
 %include "macros/syscall.inc"
